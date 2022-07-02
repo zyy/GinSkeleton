@@ -22,8 +22,8 @@ stages:
           - mkdir output
           - go env -w GO111MODULE=on
           - go env -w GOPROXY=https://goproxy.cn,direct
-          - go env -w GOOS=linux 
-          - go env -w GOARCH=amd64 
+          - go env -w GOOS=linux
+          - go env -w GOARCH=amd64
           - go build -o output/ginskeleton-api.linux64 -ldflags "-w  -s"  -trimpath   ./cmd/api/main.go
           - chmod +x output/ginskeleton-api.linux64
           - cp -r ./config/   ./public/  ./storage/   ./output
@@ -53,7 +53,7 @@ stages:
             name: output
             target: /home/wwwroot/gitee-deploy/
             artifactRepository: release
-            artifactName: output
+            artifactName: BUILD_ARTIFACT
             artifactVersion: latest
             isForce: true
         script: |-
