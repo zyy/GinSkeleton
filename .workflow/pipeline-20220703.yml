@@ -24,6 +24,7 @@ stages:
           - go env -w GOPROXY=https://goproxy.cn,direct
           - GOOS=linux GOARCH=amd64 go build -o output/ginskeleton-api.linux64 -ldflags "-w  -s"  -trimpath   ./cmd/api/main.go
           - chmod +X output/ginskeleton-api.linux64
+          - cp -r ./config/   ./public/  ./storage/   output
         artifacts:
           - name: BUILD_ARTIFACT
             path:
