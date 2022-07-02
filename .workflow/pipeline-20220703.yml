@@ -9,7 +9,7 @@ triggers:
         - ''
 stages:
   - name: stage-5dbef180
-    displayName: '编译-打包'
+    displayName: 编译-打包
     strategy: naturally
     trigger: auto
     executor: []
@@ -31,6 +31,32 @@ stages:
               - ./output
         caches:
           - /go/pkg/mod
+        strategy:
+          retry: '0'
+  - name: stage-4c5f93e4
+    displayName: 制品发布到云服务器(腾讯云)
+    strategy: naturally
+    trigger: auto
+    executor: []
+    steps:
+      - step: deploy@agent
+        name: deploy_agent
+        displayName: 主机部署
+        hostGroupID:
+          ID: 49.232.145.118
+          hostID:
+            - 1a37054b-c8a3-4c0e-988a-e3e28ac57d7e
+        deployArtifact:
+          - source: artifact
+            name: output
+            target: ~/gitee_go/deploy
+            artifactRepository: release
+            artifactName: output
+            artifactVersion: latest
+        script: |-
+          # 请在此输入部署脚本，如启动Java应用如下
+          # nohup java -jar test.jar > nohup.out &
+           echo 'Hello Gitee!'
         strategy:
           retry: '0'
 permissions:
