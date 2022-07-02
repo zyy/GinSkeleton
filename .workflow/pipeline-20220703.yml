@@ -49,14 +49,15 @@ stages:
         deployArtifact:
           - source: artifact
             name: output
-            target: ~/gitee_go/deploy
+            target: /home/wwwroot/gitee-deploy/
             artifactRepository: release
             artifactName: output
             artifactVersion: latest
+            isForce: true
         script: |-
           # 请在此输入部署脚本，如启动Java应用如下
           # nohup java -jar test.jar > nohup.out &
-           echo 'Hello Gitee!'
+           echo 'Gitee Deploy finish !'
         strategy:
           retry: '0'
 permissions:
