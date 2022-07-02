@@ -45,7 +45,7 @@ stages:
         hostGroupID:
           ID: 49.232.145.118
           hostID:
-            - 1a37054b-c8a3-4c0e-988a-e3e28ac57d7e
+            - 6fef1da3-72d5-428c-9bf2-7411c39e092b
         deployArtifact:
           - source: artifact
             name: output
@@ -55,9 +55,10 @@ stages:
             artifactVersion: latest
             isForce: true
         script: |-
-          # 请在此输入部署脚本，如启动Java应用如下
-          # nohup java -jar test.jar > nohup.out &
-           echo 'Gitee Deploy finish !'
+          # 以下命令是目标服务器执行的命令
+          cd /home/wwwroot/gitee-deploy/
+          tar -zxf  ./output.tar.gz
+          tree -L 2  ./output/
         strategy:
           retry: '0'
 permissions:
